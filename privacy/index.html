@@ -13,14 +13,18 @@
     </header>
     <main><article class="card">
       <p class="eyebrow">Legal</p><h1>Privacy Policy</h1>
-      <p class="lede">Last updated: <strong>October 29, 2026</strong></p>
+      <p class="lede">Last updated: <strong>November 25, 2026</strong></p>
       <p>Allet is an expense companion. This policy explains how Allet handles information when you use the app, Allet+ subscriptions, and this website.</p>
 
       <h2>1. Information Allet handles</h2>
       <h3>Information you create in Allet</h3>
       <ul><li>Transaction details, such as merchant name, amount, date, category, and notes.</li><li>Account information when you choose to upgrade from an anonymous account, including an email address or identity-provider details.</li><li>Subscription status and purchase identifiers needed to provide Allet+.</li></ul>
       <h3>Receipt and voice features</h3>
-      <ul><li>Receipt images are processed on your device and are not uploaded by Allet. OCR text extracted from a receipt may be sent to Allet’s processing services to categorize the transaction.</li><li>When you use voice input, microphone audio may be processed by Apple’s speech-recognition service or sent to Google Gemini, depending on the feature mode you choose. Allet does not intentionally store your audio recording after processing.</li><li>OCR text, voice transcripts, and AI-generated categorization output may be processed by Google Gemini and may be included in Allet’s AI-observability events in PostHog while the service operates.</li></ul>
+      <ul>
+        <li>Allet reads receipt images on your device. The images stay on your device. If you allow receipt AI, Allet sends the extracted text and any note you add through Supabase to Google Gemini to identify and categorize your expenses.</li>
+        <li>If you allow voice AI, Allet temporarily records your microphone audio on your device and sends the recording through Supabase to Google Gemini to transcribe it and identify transactions. In versions or modes that use Apple speech recognition, Apple may process microphone audio and Allet may send the resulting transcript to Google Gemini for categorization.</li>
+        <li>Allet’s AI troubleshooting events in PostHog may include extracted receipt text, notes you add to a receipt, voice transcripts, and AI categorization results linked to your Allet account. These events do not include receipt photos or raw voice recordings.</li>
+      </ul>
       <h3>Technical and usage information</h3>
       <ul><li>Device, app-version, diagnostic, crash, and usage information.</li><li>An app or account identifier used to operate the service and prevent abuse.</li></ul>
 
@@ -35,7 +39,11 @@
       <h2>4. Retention</h2>
       <p>We retain account and transaction information while your account is active or as needed to provide Allet. Diagnostic and analytics data is retained according to the relevant provider’s configured retention period. We may retain limited information where necessary for legal, security, fraud-prevention, or accounting purposes.</p>
 
+      <p>Allet uses temporary files for voice capture. The app attempts to remove the temporary recording when you submit it, and Allet does not keep a copy of the raw audio on its servers. Google and Apple handle any provider-side retention under their applicable service terms. See the <a href="https://ai.google.dev/gemini-api/terms">Gemini API terms</a> and <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</p>
+      <p>Supabase caches receipt categorization results so Allet can recover them after an interruption. Allet may prune results older than 30 days when the same account next processes a receipt. These cached results are also removed when the account is deleted.</p>
+
       <h2>5. Your choices and requests</h2>
+      <p>In app versions that show AI permission prompts, Allet asks separately for Voice and Receipt before sending data for each feature. Allet remembers “Sure” for that feature and account on your device. Choosing “Not now” skips the AI feature for that attempt. You can continue entering transactions manually. Pending receipt uploads require receipt permission.</p>
       <p>You can manage subscriptions through your Apple Account settings. You may request access, correction, export, or deletion of your Allet data through the support channel below. We may need to verify that a request is connected to your account before acting on it.</p>
       <p>For access, correction, export, or deletion requests, email <a href="mailto:support.allet@gmail.com?subject=Allet%20data%20request">support.allet@gmail.com</a> with the subject “Allet data request”. We may need to verify that a request is connected to your account before acting on it.</p>
 
